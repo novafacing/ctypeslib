@@ -900,7 +900,7 @@ class Generator:
             print("# %s:%d" % item.location, file=self.stream)
         if self.generate_comments:
             self.print_comment(item)
-        log.debug("generate %s, %s", item.__class__.__name__, item.name)
+        log.debug("generate %s, %s", item.__class__.__name__, item.name if hasattr(item, "name") else type(item))
         # to avoid infinite recursion, we have to mark it as done
         # before actually generating the code.
         self.done[item] = True
